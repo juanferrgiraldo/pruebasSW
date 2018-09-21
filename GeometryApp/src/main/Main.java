@@ -8,7 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
         CheckShape shape = new CheckShape();
-        int sides = 0, option = 1;
+        int sides = 0;
+        String auxSides = "";
+        String option = "";
         String triangleType, cuadrilateralType;
         Scanner sc = new Scanner(System.in);
 
@@ -16,22 +18,20 @@ public class Main {
         do {
             try{
                 System.out.print("Por favor ingrese 1 para continuar o una tecla diferente para terminar: ");
-                option = sc.nextInt();
+                option = sc.nextLine();
             } catch (Exception e) {
                 System.out.println("Has salido del programa");
                 System.exit(0);
             }
-            if(option == 1) {
-                try {
+            if(option.equals("1")) {
                     System.out.print("Por favor ingrese el total de lados de la figura: ");
-                    sides = sc.nextInt();
-                    while(sides != 3 || sides != 4) {
+                    auxSides = sc.nextLine();
+                System.out.println(auxSides);
+                    while(auxSides.equals("3") == false && auxSides.equals("4") == false) {
                         System.out.print("El número de lados ingresado no es permitido, por favor ingrese un valor igual a 3 o 4: ");
-                        sides = sc.nextInt();
+                        auxSides = sc.nextLine();
                     }
-                } catch (Exception e) {
-                    System.out.println("Salí");
-                }
+                sides = Integer.parseInt(auxSides);
                 if(sides == 3) {
                     triangleType = shape.isTriangle(sides);
                     System.out.println("La figura es un triángulo " + triangleType);
@@ -41,9 +41,10 @@ public class Main {
                 }
 
             } else {
+                System.out.println("Has salido del programa");
                 return;
             }
-        } while(option == 1);
+        } while(option.equals("1"));
 
 
     }
